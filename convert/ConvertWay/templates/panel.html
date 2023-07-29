@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Convert</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+<!--    download icon link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <meta name="theme-color" content="#7952b3">
+
+    <style>
+        .container-fluid{
+            padding-top: 30px;
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+
+</head>
+
+<body class="text-center" style="background-color: rgb(127, 255, 249);">
+
+    <script>
+          function validateFile() {
+            var fileInput = document.getElementById('formFile');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.xlsx)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+              alert('Invalid file type! Only .xlsx files are allowed.');
+              fileInput.value = '';
+              return false;
+            }
+            return true;
+          }
+    </script>
+
+    <div class="container-fluid mt-3">
+        <h1 class="mb-3">Conversion Panel</h1>
+
+        <form action="" name="convert" method="post" enctype="multipart/form-data" onsubmit="return validateFile()">
+            {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-3 p-3  text-white"></div>
+          <div class="col-sm-6 p-3 bg-dark text-white">
+              <label>Choose the courier :</label>
+              <select class="form-select mb-3" name = 'courier' required>
+                  <option selected value="">Select a Courier</option>
+                   <option value="ATS">Amazon</option>
+                   <option value="BD">Blue Dart</option>
+                   <option value="DLV">DLV</option>
+                   <option value="DTDC">DTDC</option>
+                   <option value="ECOM">ECOM</option>
+                   <option value="EKART">EKART</option>
+                   <option value="SMARTR">SMARTR</option>
+                   <option value="XB">XB</option>
+
+<!--                   <option>4</option>-->
+             </select>
+              <div class="mb-3">
+                    <label class="form-label">Upload a file</label>
+                    <input class="form-control" type="file" id="formFile" name="fileIn" required>
+                </div>
+
+                <div class="">
+                    <button class="btn btn-primary" type="submit">Submit and Download</button>
+                </div>
+          </div>
+        </div>
+        </form>
+        {% if check == False %}
+        <div class="alert alert-dismissible mt-3" role="alert">
+            <strong>Wrong File!</strong> Upload a correct file.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
